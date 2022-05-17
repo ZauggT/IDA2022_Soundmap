@@ -1,32 +1,48 @@
-bkgdColor = 255;
+bkgdColor = "blue";
 let buttons = [];
+let x = 0;
+let y = 0;
+
+/// kann man songs in ein array laden? ///
+let soundFiles = [
+  "sounds/hand.mp3",
+  "sounds/Sia_Bird_Set_Free.mp3",
+  "sounds/Miles_Davis_Bird_of_Paradise.mp3",
+  "sounds/Passenger_Bird_in_Flight.mp3",
+  "sounds/Eminem_Crack_A_Bottle.mp3",
+];
 let songs = [];
 
 function preload() {
-  song1 = loadSound("sounds/hand.mp3");
-  song2 = loadSound("sounds/Sia_Bird_Set_Free.mp3");
-  song3 = loadSound("sounds/Miles_Davis_Bird_of_Paradise.mp3");
+  for (let i = 0; i < soundFiles.length; i++) {
+    songs[i] = loadSound(soundFiles[i]);
+  }
 }
 
 function setup() {
-  background(bkgdColor);
-  createCanvas(windowWidth, windowHeight);
+  //createCanvas(windowWidth, windowHeight);
+  createCanvas(600, 800);
+  background("blue");
   rectMode(CENTER);
-  buttons.push(new Button(200, 200, song1));
-  buttons.push(new Button(300, 200, song2));
-  buttons.push(new Button(400, 200, song3));
-  /*   for (let row = 0; row < numRows; row++) {
-    for (let col = 0; col < numCols; col++) {
-      let x = map(col, 0, numCols, 25, width);
-      let y = map(row, 0, numRows, 25, height);
-      buttons.push(new Button(x, y, song2));
-      buttons.push(new Button(x + 50, y, song1));
-      console.log("row", row);
-      console.log("col", col);
-    }
-  } */
 
-  sliderVolume = createSlider(0, 3, 1, 0.02);
+  /// raster buttons mit verschiedenen songs ///
+  for (let i = 0; i < soundFiles.length; i++) {
+    let offSetX = 50;
+    let offSetY = 200;
+
+    x = i * offSetX;
+    y = 200;
+
+    if (i % 3 == 0) {
+      y = y + y;
+    }
+    buttons.push(new Button(x + 100, y, songs[i]));
+
+    console.log("y", y);
+    console.log("x", x);
+  }
+
+  sliderVolume = createSlider(0, 1, 0.5, 0.02);
   sliderVolume.position(300, 300);
 }
 
