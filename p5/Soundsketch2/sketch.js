@@ -1,88 +1,89 @@
-let hand;
-let song;
+bkgdColor = 255;
+let buttons = [];
+let songs = [];
 
-let sliderVolume;
-let sliderPan;
-let sliderRate;
-
-let button;
-let jumpButton;
-
-let amp;
+function preload() {
+  song1 = loadSound("sounds/hand.mp3");
+  song2 = loadSound("sounds/Sia_Bird_Set_Free.mp3");
+  song3 = loadSound("sounds/Miles_Davis_Bird_of_Paradise.mp3");
+}
 
 function setup() {
+  background(bkgdColor);
   createCanvas(windowWidth, windowHeight);
+  rectMode(CENTER);
+  buttons.push(new Button(200, 200, song1));
+  buttons.push(new Button(300, 200, song2));
+  buttons.push(new Button(400, 200, song3));
+  /*   for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+      let x = map(col, 0, numCols, 25, width);
+      let y = map(row, 0, numRows, 25, height);
+      buttons.push(new Button(x, y, song2));
+      buttons.push(new Button(x + 50, y, song1));
+      console.log("row", row);
+      console.log("col", col);
+    }
+  } */
 
-  song = loadSound("Sia_bird_Set_Free.mp3", loaded);
-
-  ///- Sliders - ///
-  sliderVolume = createSlider(0, 5, 1, 0.01);
+  sliderVolume = createSlider(0, 3, 1, 0.02);
   sliderVolume.position(300, 300);
-  sliderPan = createSlider(-1, 1, 0, 0.01);
-  sliderPan.position(200, 300);
-  sliderRate = createSlider(0, 2, 1, 0.01);
-  sliderRate.position(100, 300);
-
-  ///- ADD Cue - ///
-  song.addCue(2, changeBackground);
-
-  ///- Amplitude - ///
-  amp = new p5.Amplitude();
-}
-
-function togglePlaying() {
-  if (!song.isPlaying()) {
-    song.play();
-    //button.html("pause");
-
-    button.html("stop");
-  } else {
-    song.stop();
-
-    //song.pause();
-    button.html("play");
-  }
-}
-
-function jumpSong() {
-  let len = song.duration();
-  let t = random(len);
-  song.jump(t);
-}
-
-function changeBackground() {
-  background(random(255), random(255), random(255));
 }
 
 function draw() {
-  background("black");
-  //background(int(song.currentTime()), 0, 255);
-
-  song.setVolume(sliderVolume.value());
-  song.pan(sliderPan.value());
-  song.rate(sliderRate.value());
-
-  /*   if (song.currentTime() > 5) {
-    background("red");
-  } */
-  //console.log(song.currentTime());
-
-  let vol = amp.getLevel();
-  let diam = map(vol, 0, 5, 50, 300);
-  fill(255, 0, 255);
-  ellipse(width / 2, height / 2, diam, diam);
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].display();
+  }
+  ////---Volume of all Songs in the sketch---////
+  outputVolume(sliderVolume.value());
 }
 
-function loaded() {
-  ///- Buttons - ///
-  button = createButton("play");
+function mousePressed() {
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].click();
+  }
+}
+/////--CLASS---////
+class Button {
+  constructor(x, y, song) {
+    this.position = { x: x, y: y };
+    this.song = song;
+    this.buttonSize = 80;
+    this.isPressed = false;
+  }
 
-  button.mousePressed(togglePlaying);
-  button.position(200, 200);
-  button.size(50, 50);
+  display() {
+    if (this.isPressed == false) {
+      fill("white");
+    } else {
+      fill("green");
+    }
 
-  jumpButton = createButton("jump");
-  jumpButton.mousePressed(jumpSong);
+    rect(this.position.x, this.position.y, this.buttonSize);
 
-  console.log("loaded");
+    fill("black");
+    textAlign(CENTER, CENTER);
+    if (this.isPressed == false) {
+      text("OFF", this.position.x, this.position.y);
+    } else {
+      text("ON", this.position.x, this.position.y);
+    }
+  }
+
+  click() {
+    let distance = dist(mouseX, mouseY, this.position.x, this.position.y);
+    if (distance <= this.buttonSize / 2) {
+      this.switch();
+    }
+  }
+
+  switch() {
+    if (!this.isPressed) {
+      this.song.play();
+      this.isPressed = true;
+    } else {
+      this.song.stop();
+      this.isPressed = false;
+    }
+  }
 }
