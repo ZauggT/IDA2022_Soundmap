@@ -3,7 +3,6 @@ let buttons = [];
 let x = 0;
 let y = 0;
 
-/// kann man songs in ein array laden? ///
 let soundFiles = [
   "sounds/hand.mp3",
   "sounds/Sia_Bird_Set_Free.mp3",
@@ -21,29 +20,27 @@ function preload() {
 
 function setup() {
   //createCanvas(windowWidth, windowHeight);
-  createCanvas(600, 800);
+  createCanvas(windowWidth, windowHeight);
   background("blue");
   rectMode(CENTER);
 
   /// raster buttons mit verschiedenen songs ///
   for (let i = 0; i < soundFiles.length; i++) {
-    let offSetX = 50;
-    let offSetY = 200;
+    let left = 100;
+    let top = 100;
+    let xAbstand = 100;
+    let moduloCoeff = 4;
+    let x = i % moduloCoeff; // 0,1,2,0,1,2,0,1,2  -> X koordinate
 
-    x = i * offSetX;
-    y = 200;
-
-    if (i % 3 == 0) {
-      y = y + y;
+    if (i % moduloCoeff == 0) {
+      y = y + top;
     }
-    buttons.push(new Button(x + 100, y, songs[i]));
 
-    console.log("y", y);
-    console.log("x", x);
+    buttons.push(new Button(left + x * xAbstand, y, songs[i]));
   }
 
   sliderVolume = createSlider(0, 1, 0.5, 0.02);
-  sliderVolume.position(300, 300);
+  sliderVolume.position(width / 2 - sliderVolume.width / 2, height / 2);
 }
 
 function draw() {
