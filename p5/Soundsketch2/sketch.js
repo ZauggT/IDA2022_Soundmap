@@ -21,7 +21,7 @@ function preload() {
 function setup() {
   //createCanvas(windowWidth, windowHeight);
   createCanvas(windowWidth, windowHeight);
-  background("blue");
+  //background("blue");
   rectMode(CENTER);
 
   /// raster buttons mit verschiedenen songs ///
@@ -40,7 +40,7 @@ function setup() {
   }
 
   sliderVolume = createSlider(0, 1, 0.5, 0.02);
-  sliderVolume.position(width / 2 - sliderVolume.width / 2, height / 2);
+  sliderVolume.addClass("mySliders");
 }
 
 function draw() {
@@ -48,6 +48,7 @@ function draw() {
     buttons[i].display();
   }
   ////---Volume of all Songs in the sketch---////
+  sliderVolume.position(width / 2 - sliderVolume.width / 2, height / 2);
   outputVolume(sliderVolume.value());
 }
 
@@ -55,6 +56,10 @@ function mousePressed() {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].click();
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 /////--CLASS---////
 class Button {
@@ -69,12 +74,13 @@ class Button {
     if (this.isPressed == false) {
       fill("white");
     } else {
-      fill("green");
+      fill(129, 212, 136);
     }
-
+    strokeWeight(0);
     rect(this.position.x, this.position.y, this.buttonSize);
 
     fill("black");
+    textFont("Arial");
     textAlign(CENTER, CENTER);
     if (this.isPressed == false) {
       text("OFF", this.position.x, this.position.y);
