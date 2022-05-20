@@ -63,7 +63,7 @@ function setup() {
       y = y + top;
     }
 
-    buttons.push(new Button(left + x * xAbstand, y, songs[i]));
+    buttons.push(new Button(left + x * xAbstand, y + top, songs[i]));
   }
 
   sliderVolume = createSlider(0, 1, 0.5, 0.01);
@@ -86,17 +86,24 @@ function draw() {
 
   //text("🔊", width / 2, height - 100);
   let vol = amp.getLevel();
-  let diam = map(vol, 0, 0.5, 50, 200);
+  let diam = map(vol, 0, 0.5, 50, 300);
   strokeWeight(5);
 
   let barHeight = height - height / 6;
   let barAbstand = 30;
 
-  line(width, barHeight - barAbstand, diam / 1.5, barHeight - barAbstand);
+  /*   line(width, barHeight - barAbstand, diam / 1.5, barHeight - barAbstand);
   line(0, barHeight, diam, barHeight);
-  line(0, barHeight + barAbstand, diam / 2, barHeight + barAbstand);
+  line(0, barHeight + barAbstand, diam / 2, barHeight + barAbstand); */
 
-  line(width, barHeight - 2 * barAbstand);
+  line(
+    width,
+    barHeight - barAbstand,
+    width - diam / 1.5,
+    barHeight - barAbstand
+  );
+  line(width, barHeight, width - diam, barHeight);
+  line(width, barHeight + barAbstand, width - diam / 2, barHeight + barAbstand);
 
   ellipse(width / 2, height / 2, diam, diam);
 
