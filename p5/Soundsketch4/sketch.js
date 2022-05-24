@@ -4,6 +4,7 @@ let x = 0;
 let y = 0;
 let recorder, soundFile;
 let state = 0;
+
 //let font = textFont("Courier New");
 
 let soundFiles = [
@@ -225,6 +226,7 @@ class Button {
   switch() {
     if (!this.isPressed) {
       this.song.loop();
+      //this.song.syncedStart(songs, 1);
       this.isPressed = true;
     } else {
       this.song.stop();
