@@ -2,6 +2,8 @@ const vollNote = [1, 0, 0, 0, 1, 0, 0, 0];
 const halbNote = [1, 0, 1, 0, 1, 0, 1, 0];
 const virtNote = [1, 1, 1, 1, 1, 1, 1, 1];
 
+let col = (25, 23, 200, 50);
+
 /// Step sequence//
 const b1 = [1, 0, 0, 0, 0, 0, 0, 0];
 const b2 = [0, 1, 0, 0, 0, 0, 0, 0];
@@ -30,7 +32,16 @@ let goerpsPattern5 = [];
 let goerpsPattern6 = [];
 let goerpsPattern7 = [];
 let goerpsPattern8 = [];
-let schluckPattern = [];
+
+let schluckPattern1 = [];
+let schluckPattern2 = [];
+let schluckPattern3 = [];
+let schluckPattern4 = [];
+let schluckPattern5 = [];
+let schluckPattern6 = [];
+let schluckPattern7 = [];
+let schluckPattern8 = [];
+
 let dosePattern = [];
 /* 
 set_pattern(goerpsPattern, vollNote);
@@ -45,6 +56,15 @@ set_pattern(goerpsPattern5, stopPattern);
 set_pattern(goerpsPattern6, stopPattern);
 set_pattern(goerpsPattern7, stopPattern);
 set_pattern(goerpsPattern8, stopPattern);
+
+set_pattern(schluckPattern1, stopPattern);
+set_pattern(schluckPattern2, stopPattern);
+set_pattern(schluckPattern3, stopPattern);
+set_pattern(schluckPattern4, stopPattern);
+set_pattern(schluckPattern5, stopPattern);
+set_pattern(schluckPattern6, stopPattern);
+set_pattern(schluckPattern7, stopPattern);
+set_pattern(schluckPattern8, stopPattern);
 
 set_pattern(dosePattern, stopPattern);
 
@@ -69,6 +89,24 @@ function set_pattern(pattern, sound_pattern) {
 
 let goerps, schluck, dose;
 let button, button2, button3;
+
+let buttonb1,
+  buttonb2,
+  buttonb3,
+  buttonb4,
+  buttonb5,
+  buttonb6,
+  buttonb7,
+  buttonb8;
+
+let buttons1,
+  buttons2,
+  buttons3,
+  buttons4,
+  buttons5,
+  buttons6,
+  buttons7,
+  buttons8;
 //   /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$
 // | $$  | $$| $$_____/| $$__  $$| $$_____/
 // | $$  | $$| $$      | $$  \ $$| $$
@@ -86,7 +124,16 @@ let goerpsPlay5 = true;
 let goerpsPlay6 = true;
 let goerpsPlay7 = true;
 let goerpsPlay8 = true;
-let schluckPlay = true;
+
+let schluckPlay1 = true;
+let schluckPlay2 = true;
+let schluckPlay3 = true;
+let schluckPlay4 = true;
+let schluckPlay5 = true;
+let schluckPlay6 = true;
+let schluckPlay7 = true;
+let schluckPlay8 = true;
+
 let dosePlay = true;
 let part;
 let vollPhrase,
@@ -101,7 +148,17 @@ let vollPhrase,
   b7Phrase,
   b8Phrase;
 
+let s1Phrase,
+  s2Phrase,
+  s3Phrase,
+  s4Phrase,
+  s5Phrase,
+  s6Phrase,
+  s7Phrase,
+  s8Phrase;
+
 function preload() {
+  ///goerpse///
   goerps1 = loadSound("sounds/halb-goerps.mp3");
   goerps2 = loadSound("sounds/halb-goerps.mp3");
   goerps3 = loadSound("sounds/halb-goerps.mp3");
@@ -110,44 +167,89 @@ function preload() {
   goerps6 = loadSound("sounds/halb-goerps.mp3");
   goerps7 = loadSound("sounds/halb-goerps.mp3");
   goerps8 = loadSound("sounds/halb-goerps.mp3");
-  schluck = loadSound("sounds/ganz-schluck.mp3");
-  dose = loadSound("sounds/achtel-Bierdose.mp3");
+
+  ///schluecke///
+  schluck1 = loadSound("sounds/ganz-schluck.mp3");
+  schluck2 = loadSound("sounds/ganz-schluck.mp3");
+  schluck3 = loadSound("sounds/ganz-schluck.mp3");
+  schluck4 = loadSound("sounds/ganz-schluck.mp3");
+  schluck5 = loadSound("sounds/ganz-schluck.mp3");
+  schluck6 = loadSound("sounds/ganz-schluck.mp3");
+  schluck7 = loadSound("sounds/ganz-schluck.mp3");
+  schluck8 = loadSound("sounds/ganz-schluck.mp3");
+
+  ///dose///
+  //dose = loadSound("sounds/achtel-Bierdose.mp3");
 }
 
 function setup() {
+  createCanvas(0, 0);
+  ///Goerps///
   buttonb1 = createButton("b1");
+  buttonb1.addClass("buttonb");
   buttonb1.mousePressed(togglePlayingb1);
 
   buttonb2 = createButton("b2");
+  buttonb2.addClass("buttonb");
   buttonb2.mousePressed(togglePlayingb2);
 
   buttonb3 = createButton("b3");
+  buttonb3.addClass("buttonb");
   buttonb3.mousePressed(togglePlayingb3);
 
   buttonb4 = createButton("b4");
+  buttonb4.addClass("buttonb");
   buttonb4.mousePressed(togglePlayingb4);
 
   buttonb5 = createButton("b5");
+  buttonb5.addClass("buttonb");
   buttonb5.mousePressed(togglePlayingb5);
 
   buttonb6 = createButton("b6");
+  buttonb6.addClass("buttonb");
   buttonb6.mousePressed(togglePlayingb6);
 
   buttonb7 = createButton("b7");
+  buttonb7.addClass("buttonb");
   buttonb7.mousePressed(togglePlayingb7);
 
   buttonb8 = createButton("b8");
+  buttonb8.addClass("buttonb");
   buttonb8.mousePressed(togglePlayingb8);
 
-  button = createButton("play goerps");
-  button.addClass("button");
-  button.mousePressed(togglePlaying);
+  //// Schlucke ////
+  buttons1 = createButton("s1");
+  buttons1.addClass("buttons");
 
-  button2 = createButton("play schlucks");
-  button2.mousePressed(togglePlaying2);
+  buttons1.mousePressed(togglePlayings1);
 
-  button3 = createButton("play dose");
-  button3.mousePressed(togglePlaying3);
+  buttons2 = createButton("s2");
+  buttons2.addClass("buttons");
+  buttons2.mousePressed(togglePlayings2);
+
+  buttons3 = createButton("s3");
+  buttons3.addClass("buttons");
+  buttons3.mousePressed(togglePlayings3);
+
+  buttons4 = createButton("s4");
+  buttons4.addClass("buttons");
+  buttons4.mousePressed(togglePlayings4);
+
+  buttons5 = createButton("s5");
+  buttons5.addClass("buttons");
+  buttons5.mousePressed(togglePlayings5);
+
+  buttons6 = createButton("s6");
+  buttons6.addClass("buttons");
+  buttons6.mousePressed(togglePlayings6);
+
+  buttons7 = createButton("s7");
+  buttons7.addClass("buttons");
+  buttons7.mousePressed(togglePlayings7);
+
+  buttons8 = createButton("s8");
+  buttons8.addClass("buttons");
+  buttons8.mousePressed(togglePlayings8);
 
   //   /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$
   // | $$  | $$| $$_____/| $$__  $$| $$_____/
@@ -159,6 +261,8 @@ function setup() {
   // |__/  |__/|________/|__/  |__/|________/
   // assign the correct pattern
   // and change how you call the phrase
+
+  ////Goerps Phrases///
   b1Phrase = new p5.Phrase(
     "goerps",
     (time, playbackRate) => {
@@ -224,35 +328,81 @@ function setup() {
     goerpsPattern8
   );
 
-  vollPhrase = new p5.Phrase(
-    "goerps",
-    (time, playbackRate) => {
-      goerps1.rate(playbackRate);
-      goerps1.play(time);
-    },
-    goerpsPattern1
-  );
-  halbPhrase = new p5.Phrase(
+  ///Schlucke Phrases///
+  s1Phrase = new p5.Phrase(
     "schluck",
     (time, playbackRate) => {
-      schluck.rate(playbackRate);
-      schluck.play(time);
+      schluck1.rate(playbackRate);
+      schluck1.play(time);
     },
-    schluckPattern
+    schluckPattern1
   );
-  viertPhrase = new p5.Phrase(
-    "dose",
+
+  s2Phrase = new p5.Phrase(
+    "schluck",
     (time, playbackRate) => {
-      dose.rate(playbackRate);
-      dose.play(time);
+      schluck2.rate(playbackRate);
+      schluck2.play(time);
     },
-    dosePattern
+    schluckPattern2
+  );
+
+  s3Phrase = new p5.Phrase(
+    "schluck",
+    (time, playbackRate) => {
+      schluck3.rate(playbackRate);
+      schluck3.play(time);
+    },
+    schluckPattern3
+  );
+
+  s4Phrase = new p5.Phrase(
+    "schluck",
+    (time, playbackRate) => {
+      schluck4.rate(playbackRate);
+      schluck4.play(time);
+    },
+    schluckPattern4
+  );
+
+  s5Phrase = new p5.Phrase(
+    "schluck",
+    (time, playbackRate) => {
+      schluck5.rate(playbackRate);
+      schluck5.play(time);
+    },
+    schluckPattern5
+  );
+
+  s6Phrase = new p5.Phrase(
+    "schluck",
+    (time, playbackRate) => {
+      schluck6.rate(playbackRate);
+      schluck6.play(time);
+    },
+    schluckPattern6
+  );
+
+  s7Phrase = new p5.Phrase(
+    "schluck",
+    (time, playbackRate) => {
+      schluck7.rate(playbackRate);
+      schluck7.play(time);
+    },
+    schluckPattern7
+  );
+
+  s8Phrase = new p5.Phrase(
+    "schluck",
+    (time, playbackRate) => {
+      schluck8.rate(playbackRate);
+      schluck8.play(time);
+    },
+    schluckPattern8
   );
 
   part = new p5.Part();
-  part.addPhrase(vollPhrase);
-  part.addPhrase(halbPhrase);
-  part.addPhrase(viertPhrase);
+
   part.addPhrase(b1Phrase);
   part.addPhrase(b2Phrase);
   part.addPhrase(b3Phrase);
@@ -261,6 +411,15 @@ function setup() {
   part.addPhrase(b6Phrase);
   part.addPhrase(b7Phrase);
   part.addPhrase(b8Phrase);
+  ///Schlucke///
+  part.addPhrase(s1Phrase);
+  part.addPhrase(s2Phrase);
+  part.addPhrase(s3Phrase);
+  part.addPhrase(s4Phrase);
+  part.addPhrase(s5Phrase);
+  part.addPhrase(s6Phrase);
+  part.addPhrase(s7Phrase);
+  part.addPhrase(s8Phrase);
 
   part.setBPM(50);
   part.loop();
@@ -275,15 +434,17 @@ function setup() {
 // | $$  | $$| $$$$$$$$| $$  | $$| $$$$$$$$
 // |__/  |__/|________/|__/  |__/|________/
 // set the button to play or stop the sound
+
+///Goesrps///
 function togglePlayingb1() {
   // flip from true to false and vice versa
   goerpsPlay1 = !goerpsPlay1;
   if (goerpsPlay1 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern1, stopPattern);
+    buttonb1.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern1, b1);
+    buttonb1.addClass("buttonpressed");
   }
 }
 
@@ -291,77 +452,175 @@ function togglePlayingb2() {
   // flip from true to false and vice versa
   goerpsPlay2 = !goerpsPlay2;
   if (goerpsPlay2 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern2, stopPattern);
+    buttonb2.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern2, b2);
+    buttonb2.addClass("buttonpressed");
   }
 }
 function togglePlayingb3() {
   // flip from true to false and vice versa
   goerpsPlay3 = !goerpsPlay3;
   if (goerpsPlay3 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern3, stopPattern);
+    buttonb3.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern3, b3);
+    buttonb3.addClass("buttonpressed");
   }
 }
 function togglePlayingb4() {
   // flip from true to false and vice versa
   goerpsPlay4 = !goerpsPlay4;
   if (goerpsPlay4 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern4, stopPattern);
+    buttonb4.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern4, b4);
+    buttonb4.addClass("buttonpressed");
   }
 }
 function togglePlayingb5() {
   // flip from true to false and vice versa
   goerpsPlay5 = !goerpsPlay5;
   if (goerpsPlay5 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern5, stopPattern);
+    buttonb5.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern5, b5);
+    buttonb5.addClass("buttonpressed");
   }
 }
 function togglePlayingb6() {
   // flip from true to false and vice versa
   goerpsPlay6 = !goerpsPlay6;
   if (goerpsPlay6 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern6, stopPattern);
+    buttonb6.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern6, b6);
+    buttonb6.addClass("buttonpressed");
   }
 }
 function togglePlayingb7() {
   // flip from true to false and vice versa
   goerpsPlay7 = !goerpsPlay7;
   if (goerpsPlay7 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern7, stopPattern);
+    buttonb7.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern7, b7);
+    buttonb7.addClass("buttonpressed");
   }
 }
 function togglePlayingb8() {
   // flip from true to false and vice versa
   goerpsPlay8 = !goerpsPlay8;
   if (goerpsPlay8 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern8, stopPattern);
+    buttonb8.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern8, b8);
+    buttonb8.addClass("buttonpressed");
+  }
+}
+
+///Schlucke////
+
+function togglePlayings1() {
+  // flip from true to false and vice versa
+  schluckPlay1 = !schluckPlay1;
+  if (schluckPlay1 == true) {
+    set_pattern(schluckPattern1, stopPattern);
+    buttons1.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern1, b1);
+    buttons1.addClass("buttonpressed");
+  }
+}
+
+function togglePlayings2() {
+  // flip from true to false and vice versa
+  schluckPlay2 = !schluckPlay2;
+  if (schluckPlay2 == true) {
+    set_pattern(schluckPattern2, stopPattern);
+    buttons2.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern2, b2);
+    buttons2.addClass("buttonpressed");
+  }
+}
+
+function togglePlayings3() {
+  // flip from true to false and vice versa
+  schluckPlay3 = !schluckPlay3;
+  if (schluckPlay3 == true) {
+    set_pattern(schluckPattern3, stopPattern);
+    buttons3.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern3, b3);
+    buttons3.addClass("buttonpressed");
+  }
+}
+
+function togglePlayings4() {
+  // flip from true to false and vice versa
+  schluckPlay4 = !schluckPlay4;
+  if (schluckPlay4 == true) {
+    set_pattern(schluckPattern4, stopPattern);
+    buttons4.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern4, b4);
+    buttons4.addClass("buttonpressed");
+  }
+}
+
+function togglePlayings5() {
+  // flip from true to false and vice versa
+  schluckPlay5 = !schluckPlay5;
+  if (schluckPlay5 == true) {
+    set_pattern(schluckPattern5, stopPattern);
+    buttons5.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern5, b5);
+    buttons5.addClass("buttonpressed");
+  }
+}
+
+function togglePlayings6() {
+  // flip from true to false and vice versa
+  schluckPlay6 = !schluckPlay6;
+  if (schluckPlay6 == true) {
+    set_pattern(schluckPattern6, stopPattern);
+    buttons6.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern6, b6);
+    buttons6.addClass("buttonpressed");
+  }
+}
+
+function togglePlayings7() {
+  // flip from true to false and vice versa
+  schluckPlay7 = !schluckPlay7;
+  if (schluckPlay7 == true) {
+    set_pattern(schluckPattern7, stopPattern);
+    buttons7.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern7, b7);
+    buttons7.addClass("buttonpressed");
+  }
+}
+
+function togglePlayings8() {
+  // flip from true to false and vice versa
+  schluckPlay8 = !schluckPlay8;
+  if (schluckPlay8 == true) {
+    set_pattern(schluckPattern8, stopPattern);
+    buttons8.removeClass("buttonpressed");
+  } else {
+    set_pattern(schluckPattern8, b8);
+    buttons8.addClass("buttonpressed");
   }
 }
 
@@ -369,10 +628,9 @@ function togglePlaying() {
   // flip from true to false and vice versa
   goerpsPlay1 = !goerpsPlay1;
   if (goerpsPlay1 == true) {
-    console.log("pley goerps");
     set_pattern(goerpsPattern1, stopPattern);
+    buttonb1.removeClass("buttonpressed");
   } else {
-    console.log("stop goerps");
     set_pattern(goerpsPattern1, vollNote);
   }
 }
@@ -381,6 +639,7 @@ function togglePlaying2() {
   schluckPlay = !schluckPlay;
   if (schluckPlay == true) {
     set_pattern(schluckPattern, stopPattern);
+    buttonb1.removeClass("buttonpressed");
   } else {
     set_pattern(schluckPattern, halbNote);
   }
@@ -390,7 +649,14 @@ function togglePlaying3() {
   dosePlay = !dosePlay;
   if (dosePlay == true) {
     set_pattern(dosePattern, stopPattern);
+    buttonb1.removeClass("buttonpressed");
   } else {
     set_pattern(dosePattern, virtNote);
+  }
+}
+
+function keyIsPressed() {
+  if (key == "s") {
+    part.stop();
   }
 }
