@@ -54,8 +54,8 @@ function setup() {
   /// raster buttons mit verschiedenen songs ///
   for (let i = 0; i < soundFiles.length; i++) {
     let left = 100;
-    let top = 90;
-    let xAbstand = 90;
+    let top = 80;
+    let xAbstand = 80;
     let moduloCoeff = 4;
     let x = i % moduloCoeff; // 0,1,2,0,1,2,0,1,2  -> X koordinate
 
@@ -63,7 +63,7 @@ function setup() {
       y = y + top;
     }
 
-    buttons.push(new Button(left + x * xAbstand, y + top, songs[i]));
+    buttons.push(new Button(left + x * xAbstand, -75 + y + top, songs[i]));
   }
 
   sliderVolume = createSlider(0, 1, 0.5, 0.01);
@@ -146,7 +146,7 @@ class Button {
   constructor(x, y, song) {
     this.position = { x: x, y: y };
     this.song = song;
-    this.buttonSize = 80;
+    this.buttonSize = 70;
     this.isPressed = false;
   }
 

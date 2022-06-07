@@ -1,14 +1,18 @@
 h1 {
-  font-family: "Courier New", Courier, monospace;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 3rem;
   background-color: rgb(0, 0, 0);
   color: bisque;
   margin: 0%;
+  display: flex;
+  margin: auto;
+  max-width: max-content;
 }
 body {
-  background-color: bisque;
+  background-color: rgb(0, 0, 0);
   height: 100vh;
-  width: 850px;
+
+  margin: 0%;
 }
 /* Styles the whole slider */
 .mySliders {
@@ -60,23 +64,41 @@ body {
 
   font-size: 13px;
 }
-.button {
-  background-color: aqua;
-  align-self: center;
-}
+
 
 .buttonpressed {
-  background-color: aqua;
+  background-color: rgb(68, 214, 44);
+
+  border: none;
+  margin: 7px;
+  text-align: center;
+  cursor: pointer;
+  float: left;
+  border: none;
+  outline: none;
 }
 
 .buttonb {
-  border-radius: 4px;
+  
+  border-radius: 8px;
   width: 100px;
   height: 100px;
+  margin: 7px;
+  text-align: center;
+  cursor: pointer;
+  float: left;
+  border: none;
+  outline: none;
 }
 
 .buttons {
-  border-radius: 4px;
+  border-radius: 8px;
   width: 100px;
   height: 100px;
+  margin: 7px;
+  text-align: center;
+  cursor: pointer;
+  float: left;
+  border: none;
+  outline: none;
 }

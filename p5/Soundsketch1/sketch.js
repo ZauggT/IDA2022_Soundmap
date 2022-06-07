@@ -1,5 +1,4 @@
 let hand;
-let song;
 
 let sliderVolume;
 let sliderPan;
@@ -11,20 +10,17 @@ let jumpButton;
 let amp;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(200, 200);
 
   song = loadSound("Sia_bird_Set_Free.mp3", loaded);
 
   ///- Sliders - ///
-  sliderVolume = createSlider(0, 5, 1, 0.01);
-  sliderVolume.position(300, 300);
+  sliderVolume = createSlider(0, 1, 0.5, 0.01);
   sliderPan = createSlider(-1, 1, 0, 0.01);
-  sliderPan.position(200, 300);
   sliderRate = createSlider(0, 2, 1, 0.01);
-  sliderRate.position(100, 300);
 
   ///- ADD Cue - ///
-  song.addCue(2, changeBackground);
+  //song.addCue(2, changeBackground);
 
   ///- Amplitude - ///
   amp = new p5.Amplitude();
@@ -68,19 +64,15 @@ function draw() {
   //console.log(song.currentTime());
 
   let vol = amp.getLevel();
-  let diam = map(vol, 0, 5, 50, 300);
+  let diam = map(vol, 0, 1, 10, 400);
   fill(255, 0, 255);
-  ellipse(width / 2, height / 2, diam, diam);
+  ellipse(width / 2, height / 2, diam*2, diam*2);
 }
 
 function loaded() {
   ///- Buttons - ///
   button = createButton("play");
-
   button.mousePressed(togglePlaying);
-  button.position(200, 200);
-  button.size(50, 50);
-
   jumpButton = createButton("jump");
   jumpButton.mousePressed(jumpSong);
 

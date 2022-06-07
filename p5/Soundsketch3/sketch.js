@@ -20,7 +20,7 @@ function preload() {
 
 function setup() {
   //createCanvas(windowWidth, windowHeight);
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight-100);
   //background("blue");
   rectMode(CENTER);
 
@@ -59,7 +59,7 @@ function mousePressed() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight-80);
 }
 
 /////--CLASS---////

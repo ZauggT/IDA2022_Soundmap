@@ -1,6 +1,6 @@
-const vollNote = [1, 0, 0, 0, 1, 0, 0, 0];
+/* const vollNote = [1, 0, 0, 0, 1, 0, 0, 0];
 const halbNote = [1, 0, 1, 0, 1, 0, 1, 0];
-const virtNote = [1, 1, 1, 1, 1, 1, 1, 1];
+const virtNote = [1, 1, 1, 1, 1, 1, 1, 1]; */
 
 let col = (25, 23, 200, 50);
 
@@ -185,69 +185,68 @@ function preload() {
 function setup() {
   createCanvas(0, 0);
   ///Goerps///
-  buttonb1 = createButton("b1");
+  buttonb1 = createButton("");
   buttonb1.addClass("buttonb");
   buttonb1.mousePressed(togglePlayingb1);
 
-  buttonb2 = createButton("b2");
+  buttonb2 = createButton("");
   buttonb2.addClass("buttonb");
   buttonb2.mousePressed(togglePlayingb2);
 
-  buttonb3 = createButton("b3");
+  buttonb3 = createButton("");
   buttonb3.addClass("buttonb");
   buttonb3.mousePressed(togglePlayingb3);
 
-  buttonb4 = createButton("b4");
+  buttonb4 = createButton("");
   buttonb4.addClass("buttonb");
   buttonb4.mousePressed(togglePlayingb4);
 
-  buttonb5 = createButton("b5");
+  buttonb5 = createButton("");
   buttonb5.addClass("buttonb");
   buttonb5.mousePressed(togglePlayingb5);
 
-  buttonb6 = createButton("b6");
+  buttonb6 = createButton("");
   buttonb6.addClass("buttonb");
   buttonb6.mousePressed(togglePlayingb6);
 
-  buttonb7 = createButton("b7");
+  buttonb7 = createButton("");
   buttonb7.addClass("buttonb");
   buttonb7.mousePressed(togglePlayingb7);
 
-  buttonb8 = createButton("b8");
+  buttonb8 = createButton("");
   buttonb8.addClass("buttonb");
   buttonb8.mousePressed(togglePlayingb8);
 
   //// Schlucke ////
-  buttons1 = createButton("s1");
+  buttons1 = createButton("");
   buttons1.addClass("buttons");
-
   buttons1.mousePressed(togglePlayings1);
 
-  buttons2 = createButton("s2");
+  buttons2 = createButton("");
   buttons2.addClass("buttons");
   buttons2.mousePressed(togglePlayings2);
 
-  buttons3 = createButton("s3");
+  buttons3 = createButton("");
   buttons3.addClass("buttons");
   buttons3.mousePressed(togglePlayings3);
 
-  buttons4 = createButton("s4");
+  buttons4 = createButton("");
   buttons4.addClass("buttons");
   buttons4.mousePressed(togglePlayings4);
 
-  buttons5 = createButton("s5");
+  buttons5 = createButton("");
   buttons5.addClass("buttons");
   buttons5.mousePressed(togglePlayings5);
 
-  buttons6 = createButton("s6");
+  buttons6 = createButton("");
   buttons6.addClass("buttons");
   buttons6.mousePressed(togglePlayings6);
 
-  buttons7 = createButton("s7");
+  buttons7 = createButton("");
   buttons7.addClass("buttons");
   buttons7.mousePressed(togglePlayings7);
 
-  buttons8 = createButton("s8");
+  buttons8 = createButton("");
   buttons8.addClass("buttons");
   buttons8.mousePressed(togglePlayings8);
 
@@ -624,39 +623,4 @@ function togglePlayings8() {
   }
 }
 
-function togglePlaying() {
-  // flip from true to false and vice versa
-  goerpsPlay1 = !goerpsPlay1;
-  if (goerpsPlay1 == true) {
-    set_pattern(goerpsPattern1, stopPattern);
-    buttonb1.removeClass("buttonpressed");
-  } else {
-    set_pattern(goerpsPattern1, vollNote);
-  }
-}
-function togglePlaying2() {
-  // flip from true to false and vice versa
-  schluckPlay = !schluckPlay;
-  if (schluckPlay == true) {
-    set_pattern(schluckPattern, stopPattern);
-    buttonb1.removeClass("buttonpressed");
-  } else {
-    set_pattern(schluckPattern, halbNote);
-  }
-}
-function togglePlaying3() {
-  // flip from true to false and vice versa
-  dosePlay = !dosePlay;
-  if (dosePlay == true) {
-    set_pattern(dosePattern, stopPattern);
-    buttonb1.removeClass("buttonpressed");
-  } else {
-    set_pattern(dosePattern, virtNote);
-  }
-}
 
-function keyIsPressed() {
-  if (key == "s") {
-    part.stop();
-  }
-}
